@@ -1,10 +1,10 @@
 provider "aws" {
-    region = "us-east-2"
+    region = var.region
 }
 
 resource "aws_instance" "my-instance" {
-    ami = "ami-0f5fcdfbd140e4ab7"
-    instance_type = "t2.micro"
+    ami = var.image_id
+    instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.my-sg.id]
         tags = {
       "env"="dev"
@@ -35,4 +35,22 @@ resource "aws_security_group" "my-sg" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
+}
+
+variable "image_id" {
+  default = "ami-0f5fcdfbd140e4ab7"
+}
+
+variable "instance_type" {
+    default = "t2.micro"
+  
+}
+
+variable "region" {
+    default = "us-east-2"
+  
+}
+
+output "public_ip"{
+    value = aws_instance.my-instance.public_ip
 }
