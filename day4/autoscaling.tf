@@ -81,6 +81,7 @@ resource "aws_autoscaling_group" "asg_home" {
   launch_template {
     id= aws_launch_template.launch_template_home.id
   }
+  target_group_arns = {aws_lb_target_group.tg_home.arn}
 
 }
 
@@ -104,13 +105,13 @@ resource "aws_autoscaling_group" "asg_cloth" {
   max_size = var.max_size
   desired_capacity = var.desired_size
   availability_zones = var.availability_zones
-  tags= {
-    env= var.env
+  tags = {
+    env = var.env
   }
   launch_template {
     id= aws_launch_template.launch_template_cloth.id
   }
-
+target_group_arns = {aws_lb_target_group.tg_cloth.arn}
 }
 
 #AutoScaling Group Policy
@@ -139,7 +140,7 @@ resource "aws_autoscaling_group" "asg_laptop" {
   launch_template {
     id= aws_launch_template.launch_template_laptop.id
   }
-
+target_group_arns = {aws_lb_target_group.tg_laptop.arn}
 }
 
 #AutoScaling Group Policy
