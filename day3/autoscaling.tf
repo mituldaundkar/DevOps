@@ -75,8 +75,10 @@ resource "aws_autoscaling_group" "asg_home" {
   max_size = var.max_size
   desired_capacity = var.desired_size
   availability_zones = var.availability_zones
-  tags= {
-    env= var.env
+ tag {
+    key                 = "env"
+    value               = var.env
+    propagate_at_launch = true
   }
   launch_template {
     id= aws_launch_template.launch_template_home.id
@@ -105,8 +107,10 @@ resource "aws_autoscaling_group" "asg_cloth" {
   max_size = var.max_size
   desired_capacity = var.desired_size
   availability_zones = var.availability_zones
-  tags = {
-    env = var.env
+   tag {
+    key                 = "env"
+    value               = var.env
+    propagate_at_launch = true
   }
   launch_template {
     id= aws_launch_template.launch_template_cloth.id
@@ -134,8 +138,10 @@ resource "aws_autoscaling_group" "asg_laptop" {
   max_size = var.max_size
   desired_capacity = var.desired_size
   availability_zones = var.availability_zones
-  tags= {
-    env= var.env
+   tag {
+    key                 = "env"
+    value               = var.env
+    propagate_at_launch = true
   }
   launch_template {
     id= aws_launch_template.launch_template_laptop.id
