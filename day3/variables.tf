@@ -36,7 +36,7 @@ variable "desired_size" {
 }
 
 variable "availability_zones" {
-  default = ["ap-south-1a","ap-south-1c", "ap-south-1b"]
+  default = ["ap-south-1a", "ap-south-1b"]
 }
 
 variable "vpc_id" {
