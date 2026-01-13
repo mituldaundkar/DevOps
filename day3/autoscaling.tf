@@ -11,13 +11,7 @@ resource "aws_launch_template" "launch_template_home" {
     instance_type = var.instance_type
     key_name = var.key_pair
     vpc_security_group_ids = var.vpc_security_group_ids
-    user_data = <<EOF
-        #!/bin/bash
-        apt update -y
-        apt install apache2 -y
-        systemctl start apache2
-        echo "<h1>Hello World" > /var/www/html/index.html
-    EOF
+    user_data = filebase64("home.sh")
 
     tags= {
         env=var.env
@@ -31,13 +25,7 @@ resource "aws_launch_template" "launch_template_cloth" {
     instance_type = var.instance_type
     key_name = var.key_pair
     vpc_security_group_ids = var.vpc_security_group_ids
-    user_data = <<EOF
-        #!/bin/bash
-        apt update -y
-        apt install apache2 -y
-        systemctl start apache2
-        echo "<h1>This is cloth section" > /var/www/html/cloth/index.html
-    EOF
+    user_data = filebase64("cloth.sh")
 
     tags= {
         env=var.env
@@ -53,13 +41,7 @@ resource "aws_launch_template" "launch_template_laptop" {
     instance_type = var.instance_type
     key_name = var.key_pair
     vpc_security_group_ids = var.vpc_security_group_ids
-    user_data = <<EOF
-        #!/bin/bash
-        apt update -y
-        apt install apache2 -y
-        systemctl start apache2
-        echo "<h1>This is LAPTOP section" > /var/www/html/laptop/index.html
-    EOF
+    user_data = filebase64("laptop.sh")
 
     tags= {
         env=var.env
