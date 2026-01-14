@@ -1,0 +1,5 @@
+# Syntax key= "value"
+
+ami = "ami-0f5fcdfbd140e4ab7"
+key = "mitul-ohio"
+instance_type = "t2.micro"
